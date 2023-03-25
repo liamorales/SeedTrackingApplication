@@ -15,4 +15,7 @@ public interface SeedService {
 	
 	//Here we are writing our foundations for our update methods
 	Seed updateSeed(Seed seed, long id);
+	
+	//Here we will be writing our foundation for our delete method
+	void deleteSeed(long id);
 }

@@ -17,4 +17,7 @@ Gardner getGardnerById(long id);
 
 //Here we are writing our foundations for our update methods
 Gardner updateGardner(Gardner gardner, long id);
+
+//Here we will be writing our foundation for our delete method
+	void deleteGardner(long id);
 }

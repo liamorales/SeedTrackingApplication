@@ -65,4 +65,16 @@ public class GardnerServiceImpl implements GardnerService{
 		
 		return null;
 	}
+
+
+	@Override
+	public void deleteGardner(long id) {
+		
+		//first we will see if the gardener exists 
+				gardnerRepository.findById(id).orElseThrow(() -> 
+				new ResourceNotFoundException("Gardner", "Id", id));
+				
+				gardnerRepository.deleteById(id);
+		
+	}
 }

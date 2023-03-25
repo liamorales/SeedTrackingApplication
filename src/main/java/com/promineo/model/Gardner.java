@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -14,9 +15,10 @@ import lombok.Data;
 @Table
 public class Gardner {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long gardner_id;
 	
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
@@ -35,5 +37,7 @@ public class Gardner {
 	
 	@Column(name="start_date")
 	private String startDate;
+	
+	
 	
 }

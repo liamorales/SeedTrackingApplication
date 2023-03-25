@@ -59,4 +59,16 @@ public class SeedServiceImpl implements SeedService {
 		return knownSeed;
 	}
 
+
+	@Override
+	public void deleteSeed(long id) {
+		
+		//first we will see if the seed exists 
+		seedRepository.findById(id).orElseThrow(() -> 
+		new ResourceNotFoundException("Seed", "Id", id));
+		
+		seedRepository.deleteById(id);
+		
+	}
+
 }

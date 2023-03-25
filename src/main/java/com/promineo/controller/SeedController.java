@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,14 @@ public class SeedController {
 
 	public ResponseEntity<Seed>updateSeed(@PathVariable("id")long id, @RequestBody Seed seed){
 		return new ResponseEntity<Seed>(seedService.updateSeed(seed, id), HttpStatus.OK);
+	
+	}
+	//build delete seed
+	@DeleteMapping("{id}")
+	public ResponseEntity<String> deleteSeed(@PathVariable("id") long id){
 		
+		//delete seed from the database
+		seedService.deleteSeed(id);
+		return new ResponseEntity<String>("Seed deleted! ", HttpStatus.OK);
 	}
 }
