@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>my Home page</title>
+<link rel = "stylesheet" type="text/css" href="/webjar/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+
+  <div class="container-fluid-text-center"></div>
+  <div>
+  <h1>File upload</h1>
+  </div>
+<div class= "text-success">
+<h3>[[${message}]]</h3>
+</div>
+
+<form th:action="@{/upload}" method = "post" enctype="multipart/form-data">
+<div>
+<p>
+<input type = "file" name="Gardner" required />
+</p>
+<p>
+<input type = "submit" value="upload" class="btn btn-primary">
+</p>
+
+</div>
+
+
+
+
+
+</form>
+</body>
+</html>

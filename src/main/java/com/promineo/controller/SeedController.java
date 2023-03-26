@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.promineo.model.Seed;
+
 import com.promineo.service.SeedService;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -67,4 +68,7 @@ public class SeedController {
 		seedService.deleteSeed(id);
 		return new ResponseEntity<String>("Seed deleted! ", HttpStatus.OK);
 	}
+	
+	
+	
 }

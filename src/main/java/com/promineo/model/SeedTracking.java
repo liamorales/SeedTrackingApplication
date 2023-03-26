@@ -1,10 +1,17 @@
 package com.promineo.model;
 
+//import java.util.HashSet;
+//import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+//import javax.persistence.JoinTable;
+//import javax.persistence.ManyToMany;
+//import javax.persistence.Table;
+//import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -13,27 +20,34 @@ import lombok.Data;
 @Entity
 @Table
 public class SeedTracking {
-	
-	@Column
+//	@ManyToMany
+//	@JoinTable( 
+//			name="Track_progress",
+//			joinColumns = @JoinColumn(name = "seed_id"),
+//			inverseJoinColumns = @JoinColumn(name = "progress_id")
+//			)
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public String progress_id;
 	
+//	private Set<Seed> seeds = new HashSet<>();
+	
 	@Column
-	@Id
 	public String status_id;
 	
 	@Column
-	@Id
 	public String notes_id;
 	
-	@ManyToOne
-	@JoinColumn(name="gardner_id")
-	@Id
+	
+	@Column
 	private String gardner_id;
 	
-	@ManyToOne
-	@JoinColumn(name="seed_id")
-	@Id
-	public String seed_id;
+	private long seed_id;
+	
+	private byte[] content;
+	
+//	public Set <Seed> getSeeds(){
+//		return seeds;}
+	
 
 }

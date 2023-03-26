@@ -1,5 +1,7 @@
 package com.promineo.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +22,8 @@ public class Gardner {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long gardner_id;
 	
-	@Column(name = "first_name", nullable = false)
+	
+	@Column(name = "first_name", nullable = false, length = 512, unique = true)
 	private String firstName;
 	
 	@Column (name= "last_name", nullable =false)
@@ -37,6 +40,14 @@ public class Gardner {
 	
 	@Column(name="start_date")
 	private String startDate;
+	
+	private byte[] content;
+
+	public void setSize(long size) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	
