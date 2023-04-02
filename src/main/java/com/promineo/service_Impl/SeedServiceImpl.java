@@ -1,8 +1,10 @@
 package com.promineo.service_Impl;
 
-import java.util.List;
-import java.util.Optional;
 
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.promineo.exception.ResourceNotFoundException;
@@ -15,60 +17,58 @@ public class SeedServiceImpl implements SeedService {
 
 	private SeedRepository seedRepository;
 	
-	
+	@Autowired
 	public SeedServiceImpl(SeedRepository seedRepository) {
-		super();
 		this.seedRepository = seedRepository;
 	}
 
-
+	//Save Seed
 	@Override
 	public Seed saveSeed(Seed seed) {
 		return seedRepository.save(seed);
 	}
 
 
+	//get All seeds
 	@Override
 	public List<Seed> getAllSeeds() {
 	return seedRepository.findAll();
 	}
 
-
+	//Get a seed by Id
 	@Override
-	public Seed getSeedById(long id) {
-		Optional<Seed> seed= seedRepository.findById(id);
-		if (seed.isPresent()) {
-			return seed.get();
-		}else {
-			throw new ResourceNotFoundException("Seed", "Id","Id");
-		}
+	public Seed getSeedById(int id) {
+		return seedRepository.findById(id).orElseThrow(() ->
+		new ResourceNotFoundException("Seed", "Id", id)
+				);
 	}
-
+	
+	
+	//Update Seed by Id
 	@Override
-	public Seed updateSeed(Seed seed, long id) {
+	public Seed updateSeed(Seed seed, int id) {
 		
 		//we will first need to check that the seeds exists in the database
-		Seed knownSeed = seedRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Seed", "Id", id));
+		Seed existingSeed = seedRepository.findById(id).orElseThrow(() ->
+		new ResourceNotFoundException("Seed", "Id", id)
+		);
 		
-		knownSeed.setName(seed.getName());
+		existingSeed.setName(seed.getName());
+		
 		//save seed to DB
-		
-		seedRepository.save(knownSeed);
-
-		return knownSeed;
+		seedRepository.save(existingSeed);
+		return existingSeed;
 	}
 
 
 	@Override
-	public void deleteSeed(long id) {
+	public void deleteSeed(int id) {
 		
 		//first we will see if the seed exists 
-		seedRepository.findById(id).orElseThrow(() -> 
-		new ResourceNotFoundException("Seed", "Id", id));
-		
-		seedRepository.deleteById(id);
-		
+		Seed existingSeed = seedRepository.findById(id).orElseThrow(() -> 
+		new ResourceNotFoundException("Seed", "Id", id)
+		);
+		seedRepository.delete(existingSeed);
 	}
 
 }

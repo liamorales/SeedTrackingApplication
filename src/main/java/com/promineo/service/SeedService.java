@@ -5,17 +5,21 @@ import java.util.List;
 import com.promineo.model.Seed;
 
 public interface SeedService {
-	Seed saveSeed(Seed seed);
+	
+	//CREATING or POSTING a seed
+	public Seed saveSeed(Seed seed);
 
-	//Here we are writing our foundations for our get methods
-	List<Seed>getAllSeeds();
+	//Get all of the seeds
+	public List<Seed>getAllSeeds();
 	
-	//Here we are writing our foundations for our put methods
-	Seed getSeedById(long id);
+	//Get a seed by Id
+	public Seed getSeedById(int id);
+
+	//Update a seed
+	public Seed updateSeed(Seed seed, int id);
+
+	//Delete seed
+	public void deleteSeed(int id);
 	
-	//Here we are writing our foundations for our update methods
-	Seed updateSeed(Seed seed, long id);
-	
-	//Here we will be writing our foundation for our delete method
-	void deleteSeed(long id);
+
 }

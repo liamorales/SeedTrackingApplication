@@ -1,8 +1,8 @@
 package com.promineo.service_Impl;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.promineo.exception.ResourceNotFoundException;
@@ -15,38 +15,35 @@ public class GardnerServiceImpl implements GardnerService{
 
 	private GardnerRepository gardnerRepository;
 	
-	
+	@Autowired
 	public GardnerServiceImpl(GardnerRepository gardnerRepository) {
 		super();
 		this.gardnerRepository = gardnerRepository;
 	}
 
-
+//save gardener
 	@Override
 	public Gardner saveGardner(Gardner gardner) {
 		return gardnerRepository.save(gardner);
 	}
 
-
+//get all gardeners
 	@Override
-	public List<Gardner> getAllGardner() {
+	public List<Gardner> getAllGardners() {
 		return gardnerRepository.findAll();
 	}
 
-
+//Get gardener by Id
 	@Override
-	public Gardner getGardnerById(long id) {
-		Optional<Gardner> gardner= gardnerRepository.findById(id);
-		if (gardner.isPresent()) {
-			return gardner.get();
-		}else {
-			throw new ResourceNotFoundException("Gardner", "Id","Id");
-		}
+	public Gardner getGardnerById(int id) {
+		return gardnerRepository.findById(id).orElseThrow(() ->
+		new ResourceNotFoundException("Gardner", "Id", id)
+		);
 	}
 
-
+//Update Gardener by Id
 	@Override
-	public Gardner updateGardner(Gardner gardner, long id) {
+	public Gardner updateGardner(Gardner gardner, int id) {
 		
 		//First we need to make sure that the Gardener does exist
 		Gardner existingGardner = gardnerRepository.findById(id).orElseThrow(
@@ -59,22 +56,22 @@ public class GardnerServiceImpl implements GardnerService{
 		existingGardner.setRegion(gardner.getRegion());
 		existingGardner.setClimate(gardner.getClimate());
 		existingGardner.setStartDate(gardner.getStartDate());
-		//then we will save the existing gardener
 		
+		//then we will save the existing gardener
 		gardnerRepository.save(existingGardner);
 		
-		return null;
+		return existingGardner;
 	}
 
-
+//Delete Gardener
 	@Override
-	public void deleteGardner(long id) {
+	public void deleteGardner(int id) {
 		
 		//first we will see if the gardener exists 
-				gardnerRepository.findById(id).orElseThrow(() -> 
+				Gardner existingGardner = gardnerRepository.findById(id).orElseThrow(() -> 
 				new ResourceNotFoundException("Gardner", "Id", id));
 				
-				gardnerRepository.deleteById(id);
+				gardnerRepository.delete(existingGardner);
 		
 	}
 }

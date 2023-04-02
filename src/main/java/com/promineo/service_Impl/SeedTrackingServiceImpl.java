@@ -1,70 +1,76 @@
 package com.promineo.service_Impl;
 
 import java.util.List;
-import java.util.Optional;
-import com.promineo.exception.ResourceNotFoundException;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.promineo.model.SeedTracking;
 import com.promineo.repository.SeedTrackingRepository;
+import com.promineo.service.SeedTrackingService;
 
-public class SeedTrackingServiceImpl {
+@Service 
+public class SeedTrackingServiceImpl implements SeedTrackingService {
 
 private SeedTrackingRepository seedTrackingRepository;
 	
-	
+	@Autowired
 	public SeedTrackingServiceImpl(SeedTrackingRepository seedTrackingRepository) {
 		super();
 		this.seedTrackingRepository = seedTrackingRepository;
 	}
 
-
+//Save seedTracking
+	@Override
 	public SeedTracking saveSeedTracking(SeedTracking seedTracking) {
 		return seedTrackingRepository.save(seedTracking);
 	}
 
-
-	public List<SeedTracking> trackAllSeeds() {
+//get all seedTracking
+	@Override
+	public List<SeedTracking> getAllSeedTrackings() {
 	return seedTrackingRepository.findAll();
 	}
 
+//Get seedTracking by Id
+//	@Override
+//	public SeedTracking getSeedTrackingById(int id) {
+//		return seedTrackingRepository.findById(id).orElseThrow(() ->
+//		new ResourceNotFoundException("Gardner", "Id", id)
+//		);
+//	}
+////Update SeedTracking
+//	@Override
+//	public SeedTracking updateSeedTrackingById(SeedTracking seedTracking, int id) {
+//		
+//		//we will first need to check that the seeds exists in the database
+//		SeedTracking exisitingSeedTrackingId = seedTrackingRepository.findById(id).orElseThrow(
+//				() -> new ResourceNotFoundException("SeedTracked", "Id", id));
+//		
+//		exisitingSeedTrackingId.setSeed_id(seedTracking.getSeed_id());
+//		exisitingSeedTrackingId.setGardner_id(seedTracking.getGardner_id());
+//		exisitingSeedTrackingId.setNotes_id(seedTracking.getNotes_id());
+//		exisitingSeedTrackingId.setProgress_id(seedTracking.getProgress_id());
+//		exisitingSeedTrackingId.setStatus_id(seedTracking.getStatus_id());
+//		
+//		
+//		//save seedTracking to DB
+//		seedTrackingRepository.save(exisitingSeedTrackingId);
+//
+//		return exisitingSeedTrackingId;
+//	}
 
-	public SeedTracking getSeedTrackingById(String id) {
-		Optional<SeedTracking> seedTracking= seedTrackingRepository.findById(id);
-		if (seedTracking.isPresent()) {
-			return seedTracking.get();
-		}else {
-			throw new ResourceNotFoundException("SeedTracked", "Id","Id");
-		}
-	}
-
-	public SeedTracking updateSeedTracking(SeedTracking seedTracking, String id) {
-		
-		//we will first need to check that the seeds exists in the database
-		SeedTracking knownSeedTracking = seedTrackingRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("SeedTracked", "Id", id));
-		
-		knownSeedTracking.setSeed_id(seedTracking.getSeed_id());
-		knownSeedTracking.setGardner_id(seedTracking.getGardner_id());
-		knownSeedTracking.setNotes_id(seedTracking.getNotes_id());
-		knownSeedTracking.setProgress_id(seedTracking.getProgress_id());
-		knownSeedTracking.setStatus_id(seedTracking.getStatus_id());
-		
-		
-		//save seed to DB
-		
-		seedTrackingRepository.save(knownSeedTracking);
-
-		return knownSeedTracking;
-	}
-
-
-	public void deleteSeedTracking(String id) {
-		
-		//first we will see if the seed exists 
-		seedTrackingRepository.findById(id).orElseThrow(() -> 
-		new ResourceNotFoundException("Seed", "Id", id));
-		
-		seedTrackingRepository.deleteById(id);
-		
-	}
+//Delete seedTracking
+//	@Override
+//	public void deleteSeedTracking(int id) {
+//		
+//		//first we will see if the seed exists 
+//		SeedTracking exisitingSeedTrackingId = seedTrackingRepository.findById(id).orElseThrow(() -> 
+//		new ResourceNotFoundException("Seed", "Id", id));
+//		
+//		seedTrackingRepository.delete(exisitingSeedTrackingId);
+//		
+//	}
 
 }

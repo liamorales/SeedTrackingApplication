@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.promineo.model.Seed;
 
 @Repository
-public interface SeedRepository extends JpaRepository<Seed, Long> {
+public interface SeedRepository extends JpaRepository<Seed, Integer> {
 
+	
 }

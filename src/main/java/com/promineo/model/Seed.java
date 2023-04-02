@@ -4,14 +4,16 @@ package com.promineo.model;
 
 
 //import java.util.HashSet;
-import java.util.Set;
+//import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+//import javax.persistence.JoinTable;
+//import javax.persistence.ManyToMany;
+//import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -23,18 +25,24 @@ public class Seed {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-private long seed_id;
+private int seed_id; 
 	
 //	@ManyToMany(mappedBy ="seeds")
-//	private Set<SeedTracking> trackedSeedData= new HashSet<>();
+//	@JoinTable(name= "seed_role",
+//	joinColumns = {
+//			@JoinColumn (name = "seed_id")},
+//	inverseJoinColumns = {
+//			@JoinColumn (name = "seedTracking_id")
+//	})
+//private Set<SeedTracking> trackedSeedData= new HashSet<>();
+//	
 	
-	
-	@Column(name ="plant_name", length = 512, nullable = false, unique = true)
+	@Column(name = "type", length = 512, nullable = false, unique = true)
 private String name;
 
 //	public Set<SeedTracking>getTrackedSeedData(){
 //		return trackedSeedData;
 //	}
 	
-	private byte[] content;
+//	private byte[] content;
 }

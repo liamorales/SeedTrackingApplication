@@ -6,17 +6,21 @@ import com.promineo.model.SeedTracking;
 
 
 public interface SeedTrackingService {
+	
+	//CREATING or POSTING a seed
+	SeedTracking saveSeedTracking(SeedTracking seedTracking);
 
+	//Get all seeds being tracked
+	List<SeedTracking>getAllSeedTrackings();
+	
+//	//Get seedTracking by Id
+//	SeedTracking getSeedTrackingById(int id);
+//	
+//	//Update seedTracking
+//	SeedTracking updateSeedTrackingById(SeedTracking seedTracking, int id);
+//	
+//	//Delete seedTracking
+//	void deleteSeedTracking(int id);
 
-	//Here we are writing our foundations for our get methods
-	List<SeedTracking>trackAllSeeds();
 	
-	//Here we are writing our foundations for our put methods
-	SeedTracking getSeedTrackingById(String id);
-	
-	//Here we are writing our foundations for our update methods
-	SeedTracking updateSeedTrackingById(SeedTracking seedTracking, String id);
-	
-	//Here we will be writing our foundation for our delete method
-	void deleteSeedTracking(String id);
 }

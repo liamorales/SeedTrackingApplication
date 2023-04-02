@@ -6,18 +6,19 @@ import com.promineo.model.Gardner;
 
 
 public interface GardnerService {
-Gardner saveGardner (Gardner gardner);
 
-//Here we are writing our foundations for our get methods
-List<Gardner>getAllGardner();
+	//CREATING or POSTING a Gardener
+	Gardner saveGardner (Gardner gardner);
 
-//Here we are writing our foundations for our put method
+	//Get all gardeners
+List<Gardner>getAllGardners();
 
-Gardner getGardnerById(long id);
+//Get a gardener by Id
+Gardner getGardnerById(int id);
 
-//Here we are writing our foundations for our update methods
-Gardner updateGardner(Gardner gardner, long id);
+//Update a gardener
+Gardner updateGardner(Gardner gardner, int id);
 
-//Here we will be writing our foundation for our delete method
-	void deleteGardner(long id);
+//Delete seed
+	void deleteGardner(int id);
 }

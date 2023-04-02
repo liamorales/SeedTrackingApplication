@@ -2,20 +2,22 @@ package com.promineo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+
 import lombok.Data;
+
 
 @Data
 @Entity
-@Table (name="Plant Location")
+@Table (name="PlantLocation")
 public class PlantLocation {
 
 	@Id
-	@Column
-	private String seed_id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int seed_id;
 	
 	@Column
 	public String seedLocation;
@@ -25,6 +27,6 @@ public class PlantLocation {
 	
 	
 	@Column
-	private String gardner_id;
+	private int gardner_id;
 	
 }

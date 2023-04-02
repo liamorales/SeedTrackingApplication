@@ -1,9 +1,11 @@
 package com.promineo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.promineo.model.Gardner;
 
-public interface GardnerRepository extends JpaRepository<Gardner, Long> {
+@Repository
+public interface GardnerRepository extends JpaRepository<Gardner, Integer> {
 
 }

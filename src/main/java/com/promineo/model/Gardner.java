@@ -12,6 +12,12 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+
+
+
+
+
+
 @Data
 @Entity
 @Table
@@ -20,7 +26,7 @@ public class Gardner {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long gardner_id;
+	private int gardner_id;
 	
 	
 	@Column(name = "first_name", nullable = false, length = 512, unique = true)
@@ -41,14 +47,7 @@ public class Gardner {
 	@Column(name="start_date")
 	private String startDate;
 	
-	private byte[] content;
 
-	public void setSize(long size) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 	
 	
 }
